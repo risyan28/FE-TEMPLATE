@@ -18,6 +18,18 @@ function runGitOrThrow(args, label) {
   return result
 }
 
+function runGuardOrThrow() {
+  const result = spawnSync('node', ['scripts/check-conflict-markers.mjs'], {
+    stdio: 'pipe',
+    encoding: 'utf-8',
+  })
+
+  if (result.status !== 0) {
+    const message = (result.stderr || result.stdout || '').trim()
+    throw new Error(`check conflicts failed: ${message}`)
+  }
+}
+
 function ensureGitRepo() {
   const result = runGit(['rev-parse', '--is-inside-work-tree'])
   if (result.status !== 0 || result.stdout.trim() !== 'true') {
@@ -59,6 +71,7 @@ function main() {
     const branch = getCurrentBranch()
 
     runGitOrThrow(['add', '-A'], 'git add')
+    runGuardOrThrow()
 
     if (hasStagedChanges()) {
       const message = process.env.GIT_COMMIT_MESSAGE || 'Update project'

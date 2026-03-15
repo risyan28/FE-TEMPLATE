@@ -30,7 +30,7 @@ pnpm install
 Jika command `pnpm` belum tersedia (Windows non-admin), gunakan fallback:
 
 ```bash
-npx -y pnpm@10.6.3 install
+npx -y pnpm@10.32.1 install
 ```
 
 ### 2) Run Development Server
@@ -103,7 +103,29 @@ Disarankan pakai process manager (`systemd` atau `pm2`) untuk auto-restart saat 
 - `pnpm test`: jalankan unit/integration tests (watch)
 - `pnpm test:run`: run test sekali (CI mode)
 - `pnpm test:coverage`: run tests dengan coverage
+- `pnpm check:conflicts`: cek conflict marker pada staged changes
+- `pnpm check:conflicts:all`: cek conflict marker pada seluruh repository
+- `pnpm hooks:install`: aktifkan repo hooks path ke `.githooks`
 - `pnpm bundle:fe`: build frontend bundle script tambahan
+
+## Hardening Stage 2
+
+Template ini sudah dilengkapi baseline quality guard:
+
+- Pre-commit guard conflict marker via `.githooks/pre-commit`.
+- Script checker conflict marker di `scripts/check-conflict-markers.mjs`.
+- CI workflow minimum di `.github/workflows/ci.yml` untuk:
+  - install (`pnpm install --frozen-lockfile`)
+  - conflict check (`pnpm run check:conflicts:all`)
+  - typecheck (`pnpm run typecheck`)
+  - test (`pnpm run test:run`)
+  - build (`pnpm run build`)
+
+Aktifkan hooks sekali per clone:
+
+```bash
+pnpm run hooks:install
+```
 
 ## Notes
 

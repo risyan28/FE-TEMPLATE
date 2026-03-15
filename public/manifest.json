@@ -17,23 +17,8 @@
     {
       "src": "/favicon.ico",
       "sizes": "any",
-      "type": "image/png",
+      "type": "image/x-icon",
       "purpose": "any"
-    }
-  ],
-  "screenshots": [
-    {
-      "src": "/favicon.ico",
-      "sizes": "390x844",
-      "type": "image/png",
-      "label": "Mobile Dashboard"
-    },
-    {
-      "src": "/favicon.ico",
-      "sizes": "1920x1080",
-      "type": "image/png",
-      "form_factor": "wide",
-      "label": "Desktop Dashboard"
     }
   ],
   "categories": ["productivity", "manufacturing"],

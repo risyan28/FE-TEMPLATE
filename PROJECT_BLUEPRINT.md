@@ -19,7 +19,7 @@ Fokus: modern React Router template untuk dashboard/SPA dengan SSR, telemetry, s
   - Lockfile deterministik (`pnpm-lock.yaml`) cocok untuk server VPS dan CI/CD.
   - Sudah mature untuk ekosistem React/Vite/TypeScript.
 - Untuk local development dan VPS, gunakan Corepack agar versi package manager konsisten.
-- Catatan transisi: project saat ini masih punya script bergaya npm; command setara pnpm disediakan di bagian workflow.
+- Seluruh workflow command default sudah menggunakan pnpm.
 
 ## 2. Arsitektur Tingkat Tinggi
 
@@ -85,7 +85,6 @@ Fokus: modern React Router template untuk dashboard/SPA dengan SSR, telemetry, s
 │   ├── hooks/
 │   │   ├── use-example-socket.ts
 │   │   ├── use-mobile.ts
-│   │   ├── use-mobile.tsx
 │   │   ├── use-socket-status.ts
 │   │   ├── useLogin.ts
 │   │   └── useMenuItems.ts
@@ -302,10 +301,19 @@ Satu task dianggap selesai jika:
 - Telemetry event penting sudah dipasang (jika fitur kritikal).
 - Tidak ada hardcoded secret/credential di source.
 
-## 12. Catatan Audit Awal
+## 12. Catatan Audit Template (Current State)
 
-- `README.md` saat ini terlihat ada conflict marker Git (`<<<<<<<`, `=======`, `>>>>>>>`).
-- Perlu dibersihkan agar dokumentasi onboarding tidak membingungkan tim.
+- Dokumentasi utama (`README.md`) sudah distandardisasi pnpm-first.
+- Package manager project sudah dipin di `package.json` (`packageManager`) untuk konsistensi lintas dev/CI/VPS.
+- Script helper Git sudah dipisah ke file Node (`scripts/git-solo.mjs`, `scripts/git-team.mjs`) untuk mengurangi issue lintas shell.
+- Hardening stage 2 sudah diterapkan:
+  - Pre-commit guard untuk conflict marker via `.githooks/pre-commit`.
+  - Script pemeriksa conflict marker di `scripts/check-conflict-markers.mjs`.
+  - CI minimum di `.github/workflows/ci.yml` (install, conflict-check, typecheck, test:run, build).
+- Next hardening yang direkomendasikan:
+  - Tambahkan lint gate (`eslint`) ke pipeline CI.
+  - Tambahkan smoke test e2e minimal untuk jalur login + dashboard.
+  - Sediakan aset PWA final (icon PNG + screenshot real) sebelum go-live.
 
 ---
 
