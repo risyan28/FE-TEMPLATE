@@ -1,7 +1,7 @@
 {
-  "name": "REACT ROUTER APP",
-  "short_name": "REACT ROUTER",
-  "description": "A simple React Router app",
+  "name": "QC Assistant Approval Quotation",
+  "short_name": "QC Assistant",
+  "description": "Quotation approval dashboard for sales and manager workflow",
   "theme_color": "#1e3a8a",
   "background_color": "#ffffff",
   "display": "standalone",
