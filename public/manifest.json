@@ -1,0 +1,41 @@
+{
+  "name": "REACT ROUTER APP",
+  "short_name": "REACT ROUTER",
+  "description": "A simple React Router app",
+  "theme_color": "#1e3a8a",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "scope": "/",
+  "start_url": "/",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "48x48",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "/favicon.ico",
+      "sizes": "any",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "390x844",
+      "type": "image/png",
+      "label": "Mobile Dashboard"
+    },
+    {
+      "src": "/favicon.ico",
+      "sizes": "1920x1080",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Desktop Dashboard"
+    }
+  ],
+  "categories": ["productivity", "manufacturing"],
+  "prefer_related_applications": false
+}
